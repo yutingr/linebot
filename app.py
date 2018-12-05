@@ -39,13 +39,13 @@ def handle_message(event):
         Reply(event)
     except Exception as e:
         line_bot_api.reply_message(event.reply_token, 
-			TextSendMessage(text=e))
+			TextSendMessage(text=str(e)))
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
 	
 def Reply(text):
     if text == 'hi':
-        return 'Hello'
+        return text='Hello'
 
 import os
 if __name__ == "__main__":
