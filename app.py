@@ -6,9 +6,7 @@ from linebot import (
 from linebot.exceptions import (
         InvalidSignatureError
 )
-from linebot.models import (
-        MessageEvent, TextMessage, TextSendMessage,
-)
+from linebot.models import *
 
 app = Flask(__name__)
 
@@ -45,7 +43,8 @@ def handle_message(event):
 	
 def Reply(text):
     if text == 'hi':
-        return text='Hello'
+        text = 'Hello'
+    return text
 
 import os
 if __name__ == "__main__":
