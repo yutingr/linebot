@@ -1,12 +1,14 @@
 from flask import Flask, request, abort
 
 from linebot import (
-    LineBotApi, WebhookHandler
+        LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
-    InvalidSignatureError
+        InvalidSignatureError
 )
-from linebot.models import *
+from linebot.models import (
+        MessageEvent, TextMessage, TextSendMessage,
+)
 
 app = Flask(__name__)
 
@@ -43,7 +45,7 @@ def handle_message(event):
 	
 def Reply(text):
     if text == 'hi':
-        return text = 'Hello'
+        return 'Hello'
 
 import os
 if __name__ == "__main__":
