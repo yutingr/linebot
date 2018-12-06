@@ -6,7 +6,9 @@ from linebot import (
 from linebot.exceptions import (
         InvalidSignatureError
 )
-from linebot.models import *
+from linebot.models import (
+        MessageEvent, TextMessage, TextSendMessage,
+)
 
 app = Flask(__name__)
 
@@ -42,7 +44,7 @@ def Button(event):
     message = TemplateSendMessage(
             alt_text='Buttons template', 
             template=ButtonsTemplate(
-                    thumbnail_image_url='https://example.com/image.jpg',
+                    thumbnail_image_url='https://www.amazon.com/Disney-Stitch-Soft-Touch-Magnet/dp/B00GDI4A68',
                     title='Menu', 
                     text='Please select', 
                     actions=[
