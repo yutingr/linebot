@@ -42,7 +42,7 @@ def Button(event):
     message = TemplateSendMessage(
             alt_text='請至智慧手機上確認訊息',  # 替代文字
             template=ButtonsTemplate(
-                    thumbnail_image_url='stitch.jpg', #開頭大圖
+                    thumbnail_image_url='https://tenor.com/Ma1o.gif', #開頭大圖
                     title='Menu', 
                     text='Please select', 
                     actions=[
