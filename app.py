@@ -38,6 +38,32 @@ def KeyWord(text):
             return [True,KeyWordDict[k]]
     return [False]
 
+def Button(event):
+    message = TemplateSendMessage(
+            alt_text='Buttons template', 
+            template=ButtonsTemplate(
+                    thumbnail_image_url='*',
+                    title='Menu', 
+                    text='Please select', 
+                    actions=[
+                            PostbackTemplateAction(
+                                    label='postback',
+                                    text='postback text',
+                                    data='postback1'
+                                    ),
+                            MessageTemplateAction(
+                                    label='ButtonsTemplate',
+                                    text='ButtonsTemplate'
+                                    ),
+                            URITemplateAction(
+                                    label='VIDEO1',
+                                    uri='影片網址'
+                                    )
+                            ]
+                    )
+                )
+    line_bot_api.reply_message(event.reply_token, message)
+
 def Reply(event):
     Ktemp = KeyWord(event.message.text)
     if Ktemp[0]:
@@ -51,7 +77,7 @@ def Reply(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     try:
-        Reply(event)
+        Button(event)
     except Exception as e:
         line_bot_api.reply_message(event.reply_token, 
             TextSendMessage(text=str(e)))
