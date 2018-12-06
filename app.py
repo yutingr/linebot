@@ -42,7 +42,7 @@ def Button(event):
     message = TemplateSendMessage(
             alt_text='Buttons template', 
             template=ButtonsTemplate(
-                    thumbnail_image_url='*',
+                    thumbnail_image_url='https://example.com/image.jpg',
                     title='Menu', 
                     text='Please select', 
                     actions=[
@@ -57,7 +57,7 @@ def Button(event):
                                     ),
                             URITemplateAction(
                                     label='VIDEO1',
-                                    uri='影片網址'
+                                    uri='http://example.com/'
                                     )
                             ]
                     )
