@@ -40,9 +40,9 @@ def KeyWord(text):
 
 def Button(event):
     message = TemplateSendMessage(
-            alt_text='Buttons template', 
+            alt_text='請至智慧手機上確認訊息',  # 替代文字
             template=ButtonsTemplate(
-                    thumbnail_image_url='stitch.jpg',
+                    thumbnail_image_url='stitch.jpg', #開頭大圖
                     title='Menu', 
                     text='Please select', 
                     actions=[
@@ -56,8 +56,8 @@ def Button(event):
                                     text='ButtonsTemplate'
                                     ),
                             URITemplateAction(
-                                    label='VIDEO1',
-                                    uri='http://example.com/'
+                                    label='VIDEO',
+                                    uri='https://www.youtube.com/feed/subscriptions/UCcXyPDRksLQ7nBr_J2zEz-Q'
                                     )
                             ]
                     )
