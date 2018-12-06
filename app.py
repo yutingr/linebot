@@ -42,7 +42,7 @@ def Button(event):
     message = TemplateSendMessage(
             alt_text='Buttons template', 
             template=ButtonsTemplate(
-                    thumbnail_image_url='stitch.jpg',
+                    thumbnail_image_url='https://github.com/yutingr/linebot/blob/master/stitch.jpg',
                     title='Menu', 
                     text='Please select', 
                     actions=[
