@@ -31,9 +31,8 @@ def callback():
     return 'OK'
 
 def KeyWord(text):
-    KeyWordDict = {"你好":"你也好啊",
-                   "你是誰":"我是大帥哥",
-                   "帥":"帥炸了"}
+    KeyWordDict = {"你好":"今天天氣如何?",
+                   "掰掰":"Bye Bye"}
     for k in KeyWordDict.keys():
         if text.find(k) != -1:
             return [True,KeyWordDict[k]]
@@ -58,11 +57,7 @@ def handle_message(event):
             TextSendMessage(text=str(e)))
 #    message = TextSendMessage(text=event.message.text)
 #    line_bot_api.reply_message(event.reply_token, message)
-	
-#def Reply(text):
-#    if text == 'hi':
-#        text = 'Hello'
-#    return text
+
 
 import os
 if __name__ == "__main__":
