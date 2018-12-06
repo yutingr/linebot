@@ -42,7 +42,7 @@ def Button(event):
     message = TemplateSendMessage(
             alt_text='Buttons template', 
             template=ButtonsTemplate(
-                    thumbnail_image_url='https://www.amazon.com/Disney-Stitch-Soft-Touch-Magnet/dp/B00GDI4A68',
+                    thumbnail_image_url='stitch.jpg',
                     title='Menu', 
                     text='Please select', 
                     actions=[
