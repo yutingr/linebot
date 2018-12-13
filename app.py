@@ -30,6 +30,7 @@ def callback():
         abort(400)
     return 'OK'
 
+# 關鍵字系統
 def KeyWord(text):
     KeyWordDict = {"你好":"今天天氣如何?",
                    "掰掰":"Bye Bye"}
@@ -38,11 +39,13 @@ def KeyWord(text):
             return [True,KeyWordDict[k]]
     return [False]
 
+# 按鈕版面系統
 def Button(event):
     message = TemplateSendMessage(
             alt_text='請至智慧手機上確認訊息',  # 替代文字
             template=ButtonsTemplate(
-                    thumbnail_image_url='https://github.com/yutingr/linebot/blob/master/stitch1.jpg?raw=true', # 開頭大圖
+                    # 開頭大圖
+                    thumbnail_image_url='https://github.com/yutingr/linebot/blob/master/stitch1.jpg?raw=true',
                     title='Menu', 
                     text='Please select', 
                     actions=[
@@ -51,12 +54,12 @@ def Button(event):
                                     data='今天天氣如何'
                                     ),
                             MessageTemplateAction(
-                                    label='ButtonsTemplate',
-                                    text='ButtonsTemplate'
+                                    label='點我啊~',
+                                    text='點屁啊!'
                                     ),
                             URITemplateAction(
-                                    label='VIDEO',
-                                    uri='https://www.youtube.com/feed/subscriptions/UCcXyPDRksLQ7nBr_J2zEz-Q'
+                                    label='A.L.T_Life',
+                                    uri='https://www.youtube.com/channel/UCcXyPDRksLQ7nBr_J2zEz-Q'
                                     )
                             ]
                     )
@@ -72,7 +75,7 @@ def Reply(event):
         line_bot_api.reply_message(event.reply_token,
             TextSendMessage(text = event.message.text))
 
-#處理Postback
+# 處理Postback
 @handler.add(PostbackEvent)
 def handle_postback(event):
     command = event.postback.data.split(',')
