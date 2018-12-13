@@ -30,6 +30,33 @@ def callback():
         abort(400)
     return 'OK'
 
+# 處理訊息
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    try:
+        Reply(event)
+    except Exception as e:
+        line_bot_api.reply_message(event.reply_token, 
+            TextSendMessage(text=str(e)))
+
+# 回覆函式
+def Reply(event):
+    Ktemp = KeyWord(event.message.text)
+    if Ktemp[0]:
+        line_bot_api.reply_message(event.reply_token,
+            TextSendMessage(text = Ktemp[1]))
+    else:
+        line_bot_api.reply_message(event.reply_token,
+                                   Button(event))
+
+# 處理Postback
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    command = event.postback.data.split(',')
+    if command[0] == "今天天氣如何?":
+        line_bot_api.reply_message(event.reply_token, 
+                                   TextSendMessage(text="外面下大雨!"))
+
 # 關鍵字系統
 def KeyWord(text):
     KeyWordDict = {"你好":"今天天氣如何?",
@@ -66,35 +93,6 @@ def Button(event):
                     )
                 )
     line_bot_api.reply_message(event.reply_token, message)
-
-def Reply(event):
-    Ktemp = KeyWord(event.message.text)
-    if Ktemp[0]:
-        line_bot_api.reply_message(event.reply_token,
-            TextSendMessage(text = Ktemp[1]))
-    else:
-        line_bot_api.reply_message(event.reply_token,
-                                   Button(event))
-
-# 處理Postback
-@handler.add(PostbackEvent)
-def handle_postback(event):
-    command = event.postback.data.split(',')
-    if command[0] == "今天天氣如何?":
-        line_bot_api.reply_message(event.reply_token, 
-                                   TextSendMessage(text="外面下大雨!"))
-
-# 處理訊息
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    try:
-        Reply(event)
-    except Exception as e:
-        line_bot_api.reply_message(event.reply_token, 
-            TextSendMessage(text=str(e)))
-#    message = TextSendMessage(text=event.message.text)
-#    line_bot_api.reply_message(event.reply_token, message)
-
 
 import os
 if __name__ == "__main__":
