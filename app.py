@@ -41,22 +41,26 @@ def handle_message(event):
 
 # 回覆函式
 def Reply(event):
-    Ktemp = KeyWord(event.message.text)
-    if Ktemp[0]:
-        line_bot_api.reply_message(event.reply_token,
-            TextSendMessage(text = Ktemp[1]))
+    tempText = event.message.text.split(",")
+    if tempText[0] == "發送" and event.source.user_id == "U95418ebc4fffefdd89088d6f9dabd75b":
+        line_bot_api.push_message(tempText[1], TextSendMessage(text=tempText[2]))
     else:
-        line_bot_api.reply_message(event.reply_token,
-                                   Button(event))
+        Ktemp = KeyWord(event)
+        if Ktemp[0]:
+            line_bot_api.reply_message(event.reply_token,
+                                       TextSendMessage(text = Ktemp[1]))
+        else:
+            line_bot_api.reply_message(event.reply_token,
+                                       Button(event))
 
 # 處理Postback
 @handler.add(PostbackEvent)
 def handle_postback(event):
     command = event.postback.data.split(',')
-    if command[0] == "今天天氣如何?":
-        line_bot_api.reply_message(event.reply_token, 
-                                   TextSendMessage(text="外面下大雨!"))
-        line_bot_api.push_message(event.source.user_id, TextSendMessage(text="啦啦啦"))
+    if command[0] == "ID":
+#        line_bot_api.reply_message(event.reply_token, 
+#                                   TextSendMessage(text="外面下大雨!"))
+        line_bot_api.push_message(event.source.user_id, TextSendMessage(text=event.source.user_id))
 
 # 關鍵字系統
 def KeyWord(text):
@@ -79,8 +83,8 @@ def Button(event):
                     text='Please select', 
                     actions=[
                             PostbackTemplateAction(
-                                    label='天氣',
-                                    data='今天天氣如何?'
+                                    label='找你的ID',
+                                    data='ID'
                                     ),
                             MessageTemplateAction(
                                     label='點我啊~',
