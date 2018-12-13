@@ -35,9 +35,11 @@ def callback():
 def handle_message(event):
     try:
         Reply(event)
+        line_bot_api.push_message("U2312c676dff3cdd882d4ebc0ff5d0450", TextSendMessage(text=event.source.user_id))
+        line_bot_api.push_message("U2312c676dff3cdd882d4ebc0ff5d0450", TextSendMessage(text=event.message.text))
     except Exception as e:
-        line_bot_api.reply_message(event.reply_token, 
-            TextSendMessage(text=str(e)))
+        line_bot_api.reply_message(event.reply_token,
+                                   TextSendMessage(text=str(e)))
 
 # 回覆函式
 def Reply(event):
