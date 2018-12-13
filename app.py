@@ -33,7 +33,8 @@ def callback():
 # 關鍵字系統
 def KeyWord(text):
     KeyWordDict = {"你好":"今天天氣如何?",
-                   "掰掰":"Bye Bye"}
+                   "掰掰":"Bye Bye",
+                   "我就點你!":"點屁啊!"}
     for k in KeyWordDict.keys():
         if text.find(k) != -1:
             return [True,KeyWordDict[k]]
@@ -55,7 +56,7 @@ def Button(event):
                                     ),
                             MessageTemplateAction(
                                     label='點我啊~',
-                                    text='點屁啊!'
+                                    text='我就點你!'
                                     ),
                             URITemplateAction(
                                     label='A.L.T_Life',
@@ -87,7 +88,7 @@ def handle_postback(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     try:
-        Button(event)
+        Reply(event)
     except Exception as e:
         line_bot_api.reply_message(event.reply_token, 
             TextSendMessage(text=str(e)))
