@@ -56,6 +56,7 @@ def handle_postback(event):
     if command[0] == "今天天氣如何?":
         line_bot_api.reply_message(event.reply_token, 
                                    TextSendMessage(text="外面下大雨!"))
+        line_bot_api.push_message(event.source.user_id, TextSendMessage(text="啦啦啦"))
 
 # 關鍵字系統
 def KeyWord(text):
