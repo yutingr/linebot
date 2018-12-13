@@ -42,14 +42,13 @@ def Button(event):
     message = TemplateSendMessage(
             alt_text='請至智慧手機上確認訊息',  # 替代文字
             template=ButtonsTemplate(
-                    thumbnail_image_url='https://github.com/yutingr/linebot/blob/master/stitch1.jpg?raw=true', #開頭大圖
+                    thumbnail_image_url='https://github.com/yutingr/linebot/blob/master/stitch1.jpg?raw=true', # 開頭大圖
                     title='Menu', 
                     text='Please select', 
                     actions=[
                             PostbackTemplateAction(
-                                    label='postback',
-                                    text='postback text',
-                                    data='postback1'
+                                    label='天氣',
+                                    data='今天天氣如何'
                                     ),
                             MessageTemplateAction(
                                     label='ButtonsTemplate',
@@ -72,6 +71,14 @@ def Reply(event):
     else:
         line_bot_api.reply_message(event.reply_token,
             TextSendMessage(text = event.message.text))
+
+#處理Postback
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    command = event.postback.data.split(',')
+    if command[0] == "今天天氣如何":
+        line_bot_api.reply_message(event.reply_token, 
+                                   TextSendMessage(text="外面下大雨!"))
 
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
