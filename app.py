@@ -74,7 +74,7 @@ def Reply(event):
             TextSendMessage(text = Ktemp[1]))
     else:
         line_bot_api.reply_message(event.reply_token,
-            TextSendMessage(text = event.message.text))
+                                   Button(event))
 
 # 處理Postback
 @handler.add(PostbackEvent)
