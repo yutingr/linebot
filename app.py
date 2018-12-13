@@ -41,17 +41,17 @@ def handle_message(event):
 
 # 回覆函式
 def Reply(event):
-    tempText = event.message.text.split(",")
-    if tempText[0] == "發送" and event.source.user_id == "U95418ebc4fffefdd89088d6f9dabd75b":
-        line_bot_api.push_message(tempText[1], TextSendMessage(text=tempText[2]))
+    #tempText = event.message.text.split(",")
+#    if tempText[0] == "發送" and event.source.user_id == "U95418ebc4fffefdd89088d6f9dabd75b":
+#        line_bot_api.push_message(tempText[1], TextSendMessage(text=tempText[2]))
+#    else:
+    Ktemp = KeyWord(event)
+    if Ktemp[0]:
+        line_bot_api.reply_message(event.reply_token,
+                                   TextSendMessage(text = Ktemp[1]))
     else:
-        Ktemp = KeyWord(event)
-        if Ktemp[0]:
-            line_bot_api.reply_message(event.reply_token,
-                                       TextSendMessage(text = Ktemp[1]))
-        else:
-            line_bot_api.reply_message(event.reply_token,
-                                       Button(event))
+        line_bot_api.reply_message(event.reply_token,
+                                   Button(event))
 
 # 處理Postback
 @handler.add(PostbackEvent)
