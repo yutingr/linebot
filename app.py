@@ -52,7 +52,7 @@ def Button(event):
                     actions=[
                             PostbackTemplateAction(
                                     label='天氣',
-                                    data='今天天氣如何'
+                                    data='今天天氣如何?'
                                     ),
                             MessageTemplateAction(
                                     label='點我啊~',
@@ -80,7 +80,7 @@ def Reply(event):
 @handler.add(PostbackEvent)
 def handle_postback(event):
     command = event.postback.data.split(',')
-    if command[0] == "今天天氣如何":
+    if command[0] == "今天天氣如何?":
         line_bot_api.reply_message(event.reply_token, 
                                    TextSendMessage(text="外面下大雨!"))
 
